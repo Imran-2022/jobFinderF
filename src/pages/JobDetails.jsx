@@ -1,11 +1,15 @@
 import React from 'react'
+import JobDetailsCard from '../components/JobDetailsCard'
+import RelatedJobPosts from '../components/RelatedJobPosts'
 import Layout from '../Layout'
 
 function JobDetails() {
   return (
-    <Layout title='Job Details'>
-      <div>
-        <p>JobDetails</p>
+    <Layout title='Job Details' className='py-8'>
+      <div className='w-2/5 m-auto  '>
+          <div className='min-h-[50vh] border bg-white flex items-center'>
+            <JobDetailsCard />
+          </div>
       </div>
     </Layout>
   )

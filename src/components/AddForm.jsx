@@ -11,6 +11,7 @@ const AddForm = () => {
     const [openings, setOpenings] = useState(1);
     const [deadline, setDeadLine] = useState("");
     const [description, setDescription] = useState("");
+    const [webUrl, setWebUrl] = useState("");
 
 
     // const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const AddForm = () => {
 
             {/* title of job */}
 
-            <div className="flex items-center gap-2 py-2">
+            <div className="flex items-center gap-2 py-1.5">
                 <label htmlFor="jobtitle" className="w-1/4">Job Title : </label>
                 <select className='border px-2 w-3/4 focus:outline-none ' id="jobtitle" name="jobtitle" required value={title}
                     onChange={(e) => setTitle(e.target.value)}>
@@ -53,7 +54,7 @@ const AddForm = () => {
 
             {/* job type */}
 
-            <div className="flex items-center gap-2 py-2">
+            <div className="flex items-center gap-2 py-1.5">
                 <label htmlFor="JobType" className='w-1/4'>Job Type : </label>
                 <select className='border px-2 w-3/4 focus:outline-none ' id="JobType" name="JobType" required value={type}
                     onChange={(e) => setType(e.target.value)}>
@@ -65,7 +66,7 @@ const AddForm = () => {
             </div>
 
             {/* job salary */}
-            <div className="flex items-center gap-2 py-2">
+            <div className="flex items-center gap-2 py-1.5">
                 <label htmlFor="JobSalary" className='w-1/4'>Salary : </label>
                 <div className="border px-2 w-3/4">
                     <span className="mr-4 w-1/4">BDT</span>
@@ -76,7 +77,7 @@ const AddForm = () => {
             </div>
             {/* deadline */}
 
-            <div className="flex items-center gap-2 py-2">
+            <div className="flex items-center gap-2 py-1.5">
                 <label htmlFor="JobDeadline" className='w-1/4'>Deadline : </label>
                 <input type="date" className="w-3/4 focus:outline-none border px-2" name="JobDeadline" id="JobDeadline" required value={deadline}
                     onChange={(e) => setDeadLine(e.target.value)} />
@@ -84,12 +85,21 @@ const AddForm = () => {
 
             {/* number of opeanings !  */}
 
-            <div className="flex items-center gap-2 py-2">
+            <div className="flex items-center gap-2 py-1.5">
                 <label htmlFor="openings" className='w-1/4'>Openings : </label>
                 <div className="border px-2 w-3/4">
                     <input type="number" className="w-3/4 focus:outline-none" name="openings" id="openings" required
                         placeholder="no of openings" value={openings}
                         onChange={(e) => setOpenings(e.target.value)} />
+                </div>
+            </div>
+            {/* web url */}
+            <div className="flex items-center gap-2 py-1.5">
+                <label htmlFor="webUrl" className='w-1/4'>web-Url : </label>
+                <div className="border px-2 w-3/4">
+                    <input type="text" className="w-3/4 focus:outline-none text-red-400 font-mono" name="webUrl" id="webUrl" required
+                        placeholder="web Url" value={webUrl}
+                        onChange={(e) => setWebUrl(e.target.value)} />
                 </div>
             </div>
             {/* job descriptions !! */}
