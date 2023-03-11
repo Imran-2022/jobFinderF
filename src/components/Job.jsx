@@ -3,15 +3,7 @@ import JobCard from './JobCard'
 
 function Job() {
   return (
-    <div>
-        <JobCard/>
-        <JobCard/>
-        <JobCard/>
-        <JobCard/>
-        <JobCard/>
-        <JobCard/>
-        <JobCard/>
-        <JobCard/>
+    <div className='divide-y-2 divide-slate-100'>
         <JobCard/>
         <JobCard/>
         <JobCard/>

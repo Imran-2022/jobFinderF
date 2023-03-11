@@ -1,52 +1,34 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const JobCard = () => {
     return (
-        <div className='p-8'>
-            <p>Job Card</p>
+        <div className='p-4 '>
+            <div className='flex justify-between items-center'>
+                <Link to={`/jobs/details/${1}`}>
+                    <div>
+                        <p>Full Stack Developer</p>
+                        <div className='flex gap-4 items-center'>
+                            {/* <i className={`fa-solid fa-stop  text-lg mr-1.5 !text-${type == 'Remote' ? '[#56E5C4]' : (type == 'Internship' ? '[#FF5757]' : '[#FF8A00]')}`}></i> */}
+                            <p><i className={`fa-solid fa-stop  text-lg !text-[#56E5C4]`}></i> Full Time</p>
+                            <p>BDT 18000</p>
+                            <p><i className="fa-regular fa-calendar text-slate-400 text-lg"></i> Closing on 2022-12-31</p>
+                        </div>
+                    </div>
+                </Link>
+                <div className="flex gap-5">
+                    <Link to={`/jobs/edit/${1}`}>
+                        <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white text-sm py-1 px-3 rounded">
+                            <i className="fa-solid fa-pen text-gray-300"></i> Edit
+                        </button>
+                    </Link>
+                    <button type="button" className="bg-red-500 hover:bg-red-700 text-white text-sm py-1 px-3 rounded">
+                        <i className="fa-solid fa-trash text-gray-300"></i> Delete
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };
 
 export default JobCard;
-
-/*
-<div className="lws-single-job">
-            <div className="flex-1 min-w-0">
-                <h2 className="lws-title">{title}</h2>
-                <div className="job-footers">
-                    <div className="lws-type">
-                       
-                        <i className={`fa-solid fa-stop  text-lg mr-1.5 !text-${type == 'Remote' ? '[#56E5C4]' : (type == 'Internship' ? '[#FF5757]' : '[#FF8A00]')}`}></i>
-                        {type}
-                    </div>
-                    <div className="lws-salary">
-                        <i className="fa-solid fa-bangladeshi-taka-sign text-slate-400 text-lg mr-1.5"></i>
-                        BDT {salary}
-                    </div>
-                    <div className="lws-deadline">
-                        <i className="fa-regular fa-calendar text-slate-400 text-lg mr-1.5"></i>
-                        Closing on {deadline}
-                    </div>
-                </div>
-            </div>
-            <div className="mt-5 flex lg:mt-0 lg:ml-4">
-                <span className="hidden sm:block">
-                    <Link to={`/edit/${id}`}>
-                        <button onClick={handleEdit} type="button" className="lws-edit btn btn-primary">
-                            <i className="fa-solid fa-pen text-gray-300 -ml-1 mr-2"></i>
-                            Edit
-                        </button>
-                    </Link>
-                </span>
-
-                <span className="sm:ml-3">
-                    <button onClick={handleDelete} type="button" className="lws-delete btn btn-danger ">
-                        <i className="fa-solid fa-trash text-gray-300 -ml-1 mr-2"></i>
-                        Delete
-                    </button>
-                </span>
-            </div>
-        </div>
-        
-        */

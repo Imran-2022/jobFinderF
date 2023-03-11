@@ -10,9 +10,9 @@ const Home = () => {
             <div className='w-10/12 m-auto min-h-[84vh] border'>
                 <div className='grid grid-cols-5 gap-4'>
                     <SideBar />
-                    <div className='col-span-4 border bg-white min-h-[84vh]'>
+                    <div className='col-span-4 border-x bg-white min-h-[84vh]'>
                         <HomeMenu />
-                        <div className='max-h-[80vh] overflow-y-auto'>
+                        <div className='max-h-[80vh] overflow-y-auto scrollbar-hide'>
                             <Job />
                         </div>
                     </div>
