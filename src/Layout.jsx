@@ -11,7 +11,7 @@ const Layout = ({ title = "Job Finder Application", className, children }) => {
     return (
         <div className='bg-[#f5f7f9]'>
             <Navigation />
-            <div className={`w-10/12 m-auto p-3 min-h-[84vh] ${className}`}>
+            <div className={` ${className}`}>
                     {children}
             </div>
             <Footer />
