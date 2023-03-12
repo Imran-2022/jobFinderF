@@ -6,11 +6,11 @@ import Layout from '../Layout';
 
 const Home = () => {
     return (
-        <Layout className='py-8'>
-            <div className='w-10/12 m-auto min-h-[84vh] border'>
-                <div className='grid grid-cols-5 gap-4'>
+        <Layout className='sm:py-8'>
+            <div className='lg:w-10/12 sm:w-11/12 m-auto min-h-[84vh] border'>
+                <div className='grid md:grid-cols-5 md:gap-4'>
                     <SideBar />
-                    <div className='col-span-4 border-x bg-white min-h-[84vh]'>
+                    <div className='md:col-span-4 border-x bg-white min-h-[84vh]'>
                         <HomeMenu />
                         <div className='max-h-[80vh] overflow-y-auto scrollbar-hide'>
                             <Job />

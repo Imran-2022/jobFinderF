@@ -2,8 +2,8 @@ import React from 'react';
 
 const HomeMenu = () => {
     return (
-        <div className='flex items-center justify-between border-b p-4'>
-            <p>All Available Jobs</p>
+        <div className='flex flex-wrap items-center justify-between border-b p-4'>
+            <p className='pb-3 sm:pb-0'>All Available Jobs</p>
             <div className='flex gap-3'>
                 <div className="xl:w-52">
                     <div className="relative flex w-full flex-wrap items-stretch">
