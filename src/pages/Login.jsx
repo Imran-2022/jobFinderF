@@ -5,7 +5,7 @@ const Login = () => {
     return (
         <Layout title="login page">
             <div className="relative py-8">
-                <div className="relative container w-2/3 m-auto px-6">
+                <div className="relative container w-4/5 sm:w-2/3  m-auto px-6">
                     <div className="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12">
                         <div className="rounded bg-white">
                             <div className="p-6 sm:p-8">

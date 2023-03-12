@@ -82,7 +82,7 @@ const JobApplyCard = () => {
                     </div>
                 </div>
                 <div className='text-center'>
-                    <button className='w-2/4  bg-blue-500 hover:bg-blue-700 text-white text-sm py-2.5 my-4 px-3 rounded font-mono'>Submit Your Application</button>
+                    <button className='sm:w-2/4  bg-blue-500 hover:bg-blue-700 text-white text-sm py-2.5 my-4 px-3 rounded font-mono'>Submit Your Application</button>
                 </div>
             </form>
         </div>

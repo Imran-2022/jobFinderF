@@ -28,7 +28,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <div className="mt-28 flex flex-col md:flex-row md:justify-between items-center text-sm text-gray-400">
+                <div className="mt-6 sm:mt-28 flex flex-col md:flex-row md:justify-between items-center text-sm text-gray-400">
                     <p className="order-2 md:order-1 mt-8 md:mt-0">2022 - {year} &copy; All right reserved by @ <a className='text-zinc-100' href="https://www.linkedin.com/in/md-imranul-haque/" target="_blank" rel="noreferrer">md imranul haque</a></p>
                     <div className="order-1 md:order-2 flex">
                         <span className="px-2"><a href="https://github.com/Imran-2022" target="_blank" rel="noreferrer"><img className='w-5' src={github} alt="" /></a></span>
