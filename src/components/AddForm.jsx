@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate, } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import { createJob } from '../features/jobs/jobsSlice';
+
 
 const AddForm = () => {
     const navigate = useNavigate()
@@ -13,17 +15,16 @@ const AddForm = () => {
     const [description, setDescription] = useState("");
     const [webUrl, setWebUrl] = useState("");
 
-
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const handleCreate = (e) => {
         e.preventDefault();
-        console.log(title, type, salary, openings, deadline, description);
-        // dispatch(
-        //     createJob({title,type,salary,deadline})
-        // );
-        // navigate('/')
+        dispatch(
+            createJob({ title, type, salary, deadline, description, webUrl })
+        );
+        navigate('/')
     };
+
 
     return (
         <form className="" onSubmit={handleCreate}>
