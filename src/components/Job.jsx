@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { deleteJob } from '../features/jobs/jobsSlice';
 
 function Job({ job }) {
   const { title, type, salary, deadline, _id } = job;

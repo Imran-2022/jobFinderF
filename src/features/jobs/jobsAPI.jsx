@@ -21,7 +21,9 @@ export const editJobs= async (id, data) => {
 // delete job post !
 export const deleteJobs = async (id) => {
     const response = axios.delete(`/jobs/${id}`);
-    return response.data;
+    if(response){
+        return id;
+    }
 };
 // get single job post !
 export const getJob = async (editId) => {

@@ -127,7 +127,7 @@ const jobsSlice = createSlice({
                 state.isError = false;
                 state.isLoading = false;
                 state.jobs = state.jobs.filter(
-                    (t) => t.id !== action.payload
+                    (t) => t._id !== action.payload
                 );
             })
             .addCase(deleteJob.rejected, (state, action) => {
