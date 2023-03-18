@@ -72,7 +72,7 @@ const Home = () => {
                 <div className='grid md:grid-cols-5 md:gap-4'>
                     <SideBar />
                     <div className='md:col-span-4 border-x bg-white min-h-[84vh]'>
-                        <HomeMenu />
+                        <HomeMenu byType={byType} />
                         <div className='max-h-[80vh] overflow-y-auto scrollbar-hide'>
                             {
                                 content
