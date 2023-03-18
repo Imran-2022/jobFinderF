@@ -1,84 +1,97 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { fetchJob } from '../features/jobs/jobsSlice';
 
 const JobApplyCard = () => {
+    
+    const navigate=useNavigate()
+    const { editing } = useSelector((state) => state.jobs);
+    const { title, type, salary } = editing || {};
+
+    useEffect(() => {
+        if(!editing._id){
+            navigate('/')
+        }
+    }, [])
+
     return (
         <div className='p-6 m-auto'>
-            <p className='mb-8 font-mono'>Apply for the position - <span className='underline underline-offset-4'>{'Software Enginner'}</span></p>
-              
-            <form class="w-full max-w-lg" onSubmit={(e)=>{e.preventDefault(); alert("your application has send ! Good luck")}}>
-                <div class="flex flex-wrap mx-3 mb-2 items-center">
-                    <label class="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                    Job Title
+
+            <form className="w-full max-w-lg pt-3" onSubmit={(e) => { e.preventDefault(); alert("your application has send ! Good luck") }}>
+                <div className="flex flex-wrap mx-3 mb-2 items-center">
+                    <label className="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
+                        Job Title
                     </label>
-                    <input class=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="text" placeholder="enter your name" value={'Software Engineer'} readOnly />
+                    <input className=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="text" placeholder="enter your name" value={title} readOnly />
                 </div>
-                <div class="flex flex-wrap mx-3 mb-2 items-center">
-                    <label class="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                    Job Type
+                <div className="flex flex-wrap mx-3 mb-2 items-center">
+                    <label className="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
+                        Job Type
                     </label>
-                    <input class=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="text" placeholder="enter your name" value={'Internship'} readOnly />
+                    <input className=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="text" placeholder="enter your name" value={type} readOnly />
                 </div>
-                <div class="flex flex-wrap mx-3 mb-2 items-center">
-                    <label class="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                <div className="flex flex-wrap mx-3 mb-2 items-center">
+                    <label className="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
                         Salary/m
                     </label>
-                    <input class=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="text" placeholder="enter your name" value={'30,300,30'} readOnly/>
+                    <input className=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="text" placeholder="enter your name" value={salary} readOnly />
                 </div>
-                <div class="flex flex-wrap mx-3 mb-2 items-center">
-                    <label class="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                <div className="flex flex-wrap mx-3 mb-2 items-center">
+                    <label className="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
                         Your Name
                     </label>
-                    <input class=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="text" placeholder="enter your name" required/>
+                    <input className=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="text" placeholder="enter your name" required />
                 </div>
-                <div class="flex flex-wrap mx-3 mb-2 items-center">
-                    <label class="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                <div className="flex flex-wrap mx-3 mb-2 items-center">
+                    <label className="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
                         Your Email
                     </label>
-                    <input class=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="email" placeholder="enter your email" required/>
+                    <input className=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="email" placeholder="enter your email" required />
                 </div>
-                <div class="flex flex-wrap mx-3 mb-2 items-center">
-                    <label class="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2 underline underline-offset-4" for="grid-first-name">
+                <div className="flex flex-wrap mx-3 mb-2 items-center">
+                    <label className="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2 underline underline-offset-4" htmlFor="grid-first-name">
                         Your Github Url
                     </label>
-                    <input class=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="text" placeholder="github url" required/>
+                    <input className=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="text" placeholder="github url" required />
                 </div>
-                <div class="flex flex-wrap mx-3 mb-2 items-center">
-                    <label class="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2 underline underline-offset-4" for="grid-first-name">
+                <div className="flex flex-wrap mx-3 mb-2 items-center">
+                    <label className="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2 underline underline-offset-4" htmlFor="grid-first-name">
                         Your Linkedin Url
                     </label>
-                    <input class=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="text" placeholder="enter linkedin url" required/>
+                    <input className=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="text" placeholder="enter linkedin url" required />
                 </div>
-                <div class="flex flex-wrap mx-3 mb-2 items-center">
-                    <label class="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2 underline underline-offset-4" for="grid-first-name">
+                <div className="flex flex-wrap mx-3 mb-2 items-center">
+                    <label className="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2 underline underline-offset-4" htmlFor="grid-first-name">
                         Your portfolio Url
                     </label>
-                    <input class=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="text" placeholder="enter portfolio url" required/>
+                    <input className=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="text" placeholder="enter portfolio url" required />
                 </div>
-                <div class="flex flex-wrap mx-3 mb-2 items-center">
-                    <label class="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2  underline underline-offset-4" for="grid-first-name">
+                <div className="flex flex-wrap mx-3 mb-2 items-center">
+                    <label className="w-full md:w-1/3 px-3 text-gray-700 text-xs font-bold mb-2  underline underline-offset-4" htmlFor="grid-first-name">
                         Resume Url
                     </label>
-                    <input class=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="text" placeholder="enter your resume url" required/>
+                    <input className=" w-full md:w-2/3 px-3 py-1 mb-6 md:mb-0  text-gray-700 border focus:outline-none focus:bg-white" type="text" placeholder="enter your resume url" required />
                 </div>
-               
-                <div class="flex flex-wrap ml-3 mb-2 items-center justify-between">
-                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
+
+                <div className="flex flex-wrap ml-3 mb-2 items-center justify-between">
+                    <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-city">
                             City
                         </label>
-                        <input class=" w-full  text-gray-700 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none  " type="text" placeholder="Albuquerque" required/>
+                        <input className=" w-full  text-gray-700 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none  " type="text" placeholder="Albuquerque" required />
                     </div>
-                    <div class="w-full md:w-1/3 px-3 mb-2 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
-                        State
+                    <div className="w-full md:w-1/3 px-3 mb-2 md:mb-0">
+                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-city">
+                            State
                         </label>
-                        <input class=" w-full  text-gray-700 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none  " type="text" placeholder="State" required/>
+                        <input className=" w-full  text-gray-700 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none  " type="text" placeholder="State" required />
                     </div>
-                    <div class="w-full md:w-1/3 px-3 mb-2 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
-                        Zip
+                    <div className="w-full md:w-1/3 px-3 mb-2 md:mb-0">
+                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-city">
+                            Zip
                         </label>
-                        <input class=" w-full  text-gray-700 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none  " type="text" placeholder="90210" required/>
+                        <input className=" w-full  text-gray-700 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none  " type="text" placeholder="90210" required />
                     </div>
                 </div>
                 <div className='text-center'>

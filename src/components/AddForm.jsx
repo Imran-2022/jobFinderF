@@ -20,7 +20,7 @@ const AddForm = () => {
     const handleCreate = (e) => {
         e.preventDefault();
         dispatch(
-            createJob({ title, type, salary, deadline, description, webUrl })
+            createJob({ title, type, salary, deadline, description, webUrl ,openings})
         );
         navigate('/')
     };
