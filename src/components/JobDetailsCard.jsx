@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { fetchJob } from '../features/jobs/jobsSlice';
+import moment from 'moment';
 
 const JobDetailsCard = () => {
     const dispatch=useDispatch();
@@ -23,7 +24,7 @@ const JobDetailsCard = () => {
                 <p><span className='font-bold underline underline-offset-2 '>Job Title </span>: {title}</p>
                 <p><span className='font-bold underline underline-offset-2 font-mono'>Job Type</span> : {type}</p>
                 <p><span className='font-bold underline underline-offset-2 font-mono'>Salary</span> : {salary}</p>
-                <p><span className='font-bold underline underline-offset-2 font-mono'>Deadline</span> : {deadline}</p>
+                <p><span className='font-bold underline underline-offset-2 font-mono'>Deadline</span> : {moment(deadline).format('YYYY-MM-DD')}</p>
                 <p><span className='font-bold underline underline-offset-2 font-mono'>Openings</span> : {openings||0}</p>
                 <p><span className='font-bold underline underline-offset-2 font-mono'>web-Url</span> : {webUrl}</p>
                 <p><span className='font-bold underline underline-offset-2 font-mono'>Job Description</span> : {description}</p>

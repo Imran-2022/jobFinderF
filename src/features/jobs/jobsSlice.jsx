@@ -109,10 +109,10 @@ const jobsSlice = createSlice({
                 state.isLoading = false;
 
                 const indexToUpdate = state.jobs.findIndex(
-                    (t) => t.id === action.payload.id
+                    (t) => t._id == action.payload.id
                 );
-
-                state.jobs[indexToUpdate] = action.payload;
+                console.log(action.payload.dd,"SDgsdg");
+                state.jobs[indexToUpdate] = action.payload.dd;
             })
             .addCase(editJob.rejected, (state, action) => {
                 state.isLoading = false;

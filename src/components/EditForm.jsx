@@ -1,28 +1,61 @@
-import React, { useState } from 'react';
-import { useNavigate, } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
+import { editJob, fetchJob, fetchJobs } from '../features/jobs/jobsSlice';
 // import { useDispatch } from 'react-redux';
+import moment from 'moment';
+import { filterBySearch, filterByType } from '../features/filter/filterByTypeSearchSaralySlice';
 
 const EditForm = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate()
-    // createJob
-    const [title, setTitle] = useState("Software Engineer");
-    const [type, setType] = useState("Internship");
-    const [salary, setSalary] = useState(23);
-    const [openings, setOpenings] = useState(13);
-    const [deadline, setDeadLine] = useState('2023-03-01');
-    const [description, setDescription] = useState('long miles to go !');
+    const { editId } = useParams()
+    // editing
+    const { editing } = useSelector((state) => state.jobs);
+
+    const [title, setTitle] = useState("");
+    const [type, setType] = useState("");
+    const [salary, setSalary] = useState('');
+    const [openings, setOpenings] = useState(0);
+    const [deadline, setDeadLine] = useState('');
+    const [description, setDescription] = useState('');
     const [webUrl, setWebUrl] = useState("");
 
+    useEffect(() => {
+        dispatch(fetchJob({ editId }))
+        dispatch(fetchJobs())
+    }, [editId])
 
-    // const dispatch = useDispatch();
+    useEffect(() => {
+        setTitle(editing?.title);
+        setType(editing?.type);
+        setSalary(editing?.salary);
+        setOpenings(editing?.openings||0);
+        setDeadLine( moment(editing?.deadline).format('YYYY-MM-DD'));
+        setDescription(editing?.description);
+        setWebUrl(editing?.webUrl);
+    }, [editId,editing])
 
+    // handle Edit here -> 
     const handleEdit = (e) => {
         e.preventDefault();
-        console.log(title,type,salary,openings,deadline,description);
-        // dispatch(
-        //     createJob({title,type,salary,deadline})
-        // );
-        // navigate('/')
+        dispatch(
+            editJob({
+                id: editing?._id,
+                data: {
+                    title,
+                    type,
+                    salary,
+                    openings,
+                    deadline,
+                    description,
+                    webUrl
+                },
+            })
+        );
+        dispatch(filterByType('all'));
+        dispatch(filterBySearch(''))
+        navigate('/')
     };
 
     return (
@@ -32,7 +65,7 @@ const EditForm = () => {
 
             <div className="flex items-center gap-2 py-2">
                 <label htmlFor="jobtitle" className="w-1/4">Job Title : </label>
-                <select className='border px-2 w-3/4 py-0.5 focus:outline-none ' id="jobtitle" name="jobtitle" required value={title}
+                <select className='border px-2 w-3/4 py-0.5 focus:outline-none ' id="jobtitle" name="jobtitle" required value={title ? title : ''}
                     onChange={(e) => setTitle(e.target.value)}>
                     <option value="" hidden defaultValue>Select Job</option>
                     <option value="Software Engineer">Software Engineer</option>
@@ -56,7 +89,7 @@ const EditForm = () => {
 
             <div className="flex items-center gap-2 py-2">
                 <label htmlFor="JobType" className='w-1/4'>Job Type : </label>
-                <select className='border py-0.5 px-2 w-3/4 focus:outline-none ' id="JobType" name="JobType" required value={type}
+                <select className='border py-0.5 px-2 w-3/4 focus:outline-none ' id="JobType" name="JobType" required value={type ? type : ''}
                     onChange={(e) => setType(e.target.value)}>
                     <option value="" hidden defaultValue>Select Job Type</option>
                     <option value="Full Time">Full Time</option>
@@ -71,7 +104,7 @@ const EditForm = () => {
                 <div className="border px-2 py-0.5 w-3/4">
                     <span className="mr-4 w-1/4">BDT</span>
                     <input type="number" className="w-3/4 py-0.5 focus:outline-none" name="JobSalary" id="JobSalary" required
-                        placeholder="20,00,000" value={salary}
+                        placeholder="20,00,000" value={salary ? salary : ''}
                         onChange={(e) => setSalary(e.target.value)} />
                 </div>
             </div>
@@ -79,7 +112,7 @@ const EditForm = () => {
 
             <div className="flex items-center gap-2 py-2">
                 <label htmlFor="JobDeadline" className='w-1/4'>Deadline : </label>
-                <input type="date" className="w-3/4 py-0.5 focus:outline-none border px-2" name="JobDeadline" id="JobDeadline" required value={deadline}
+                <input type="date" className="w-3/4 py-0.5 focus:outline-none border px-2" name="JobDeadline" id="JobDeadline" required value={deadline ? deadline : ''}
                     onChange={(e) => setDeadLine(e.target.value)} />
             </div>
 
@@ -93,19 +126,19 @@ const EditForm = () => {
                         onChange={(e) => setOpenings(e.target.value)} />
                 </div>
             </div>
-             {/* web url */}
-             <div className="flex items-center gap-2 py-1.5">
+            {/* web url */}
+            <div className="flex items-center gap-2 py-1.5">
                 <label htmlFor="webUrl" className='w-1/4'>web-Url : </label>
                 <div className="border px-2 w-3/4">
                     <input type="text" className="w-3/4 py-0.5 focus:outline-none text-red-400 font-mono" name="webUrl" id="webUrl" required
-                        placeholder="web Url" value={webUrl}
+                        placeholder="web Url" value={webUrl ? webUrl : ''}
                         onChange={(e) => setWebUrl(e.target.value)} />
                 </div>
             </div>
             {/* job descriptions !! */}
             <div className='flex items-center justify-between pb-3'>
-            <label htmlFor="editor" className="">Job Descriptions:</label>
-            <span title='How to write description !'className='underline underline-offset-2' onClick={()=>alert(`
+                <label htmlFor="editor" className="">Job Descriptions:</label>
+                <span title='How to write description !' className='underline underline-offset-2' onClick={() => alert(`
             For normal line start and end with * 
             And for bold line start and end with ** 
             And for any link start and end with *** 
@@ -113,7 +146,7 @@ const EditForm = () => {
             </div>
             <div className="w-full border-2 shadow-sm">
                 <div className="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800">
-                    <textarea id="editor" rows="8" className="py-0.5 block w-full px-0 text-sm text-gray-800 bg-white border-0 focus:outline-none" placeholder="Write your job description !..." required value={description}
+                    <textarea id="editor" rows="8" className="py-0.5 block w-full px-0 text-sm text-gray-800 bg-white border-0 focus:outline-none" placeholder="Write your job description !..." required value={description ? description : ''}
                         onChange={(e) => setDescription(e.target.value)}></textarea>
                 </div>
             </div>
